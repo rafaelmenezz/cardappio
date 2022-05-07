@@ -18,7 +18,7 @@ public class ClienteDaoImplTest {
         clienteDao = new ClienteDaoImpl();
     }
 
-    // @Test
+    @Test
     public void testSave() {
         System.out.println("Teste salvar");
         cliente = new Cliente(GeradorUtil.gerarNome(), GeradorUtil.gerarCelular());
@@ -31,7 +31,7 @@ public class ClienteDaoImplTest {
 
     }
 
-    //@Test
+    @Test
     public void testUpdate() {
         System.out.println("Teste Update");
 
@@ -53,7 +53,7 @@ public class ClienteDaoImplTest {
 
     }
 
-   // @Test
+   @Test
     public void testSearchName() {
         System.out.println("Teste pesquisa por nome");
 
@@ -66,7 +66,7 @@ public class ClienteDaoImplTest {
         assertTrue(!clientes.isEmpty());
     }
     
-    // @Test
+    @Test
     public void testSearchPhone() {
         System.out.println("Teste pesquisa por telefone");
 
@@ -94,10 +94,11 @@ public class ClienteDaoImplTest {
         
     }
 
+   
     public Cliente getClienteBD() {
 
         session = HibernateUtil.abrirConexao();
-        Query<Cliente> consulta = session.createQuery("From Cliente c");
+        Query<Cliente> consulta = session.createQuery("From Cliente c", Cliente.class);
         List<Cliente> clientes = consulta.getResultList();
         session.close();
 
