@@ -41,6 +41,12 @@ public class GeradorUtil {
         int indice = (int) (Math.random() * nomes.length);
         return nomes[indice] + " " + gerarSobrenome();
     }
+
+    public static String gerarCargo() {
+        String[] nomes = {"Atendente", "Entregador"};
+        int indice = (int) (Math.random() * nomes.length);
+        return nomes[indice];
+    }
     
     private static String gerarSobrenome() {
         String[] sobrenomes = {"Pereira", "Oliveira", "Antunes", "da Silva", "Santos", "Rocha", "Moura", 

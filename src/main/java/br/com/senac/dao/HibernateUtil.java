@@ -5,6 +5,7 @@ import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import br.com.senac.entidades.Cargo;
 import br.com.senac.entidades.Cliente;
 
 public class HibernateUtil {
@@ -15,6 +16,7 @@ public class HibernateUtil {
         try {
             Configuration cfg = new Configuration();
             cfg.addAnnotatedClass(Cliente.class);
+            cfg.addAnnotatedClass(Cargo.class);
 
             cfg.configure("/META-INF/hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder()

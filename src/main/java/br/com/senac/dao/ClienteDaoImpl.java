@@ -15,20 +15,19 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long> implements Client
         return session.get(Cliente.class, id);
     }
 
-    @SuppressWarnings("unchecked")
+   
     @Override
     public List<Cliente> searchForName(String name, Session session) throws HibernateException {
-        Query<Cliente> consulta = session.createQuery("FROM Cliente c WHERE c.nome LIKE :nomeSearch ");
+        Query<Cliente> consulta = session.createQuery("FROM Cliente c WHERE c.nome LIKE :nomeSearch ", Cliente.class);
         consulta.setParameter("nomeSearch", "%" + name + "%");
 
         return consulta.getResultList();
 
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<Cliente> searchForPhone(String phone, Session session) throws HibernateException {
-        Query<Cliente> consulta = session.createQuery("FROM Cliente c WHERE c.telefone LIKE :phoneSearch ");
+        Query<Cliente> consulta = session.createQuery("FROM Cliente c WHERE c.telefone LIKE :phoneSearch ", Cliente.class);
         consulta.setParameter("phoneSearch", "%" + phone + "%");
 
         return consulta.getResultList();
