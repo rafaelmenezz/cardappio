@@ -10,8 +10,10 @@ import br.com.senac.entidades.Cargo;
 
 public interface CargoDao extends BaseDao<Cargo, Long> {
 
-   List<Cargo> searchForDescricao(String name, Session session) throws HibernateException;
+   List<Cargo> searchForCargo(String cargo, Session session) throws HibernateException;
    
    List<Cargo> fetchLCargos(Session session) throws HibernateException;
+
+   List<Cargo> listFuncionarios(String cargo, Session session) throws HibernateException;
    
 }

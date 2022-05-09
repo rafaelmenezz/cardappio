@@ -16,16 +16,23 @@ public class CargoDaoImpl extends BaseDaoImpl<Cargo, Long> implements CargoDao {
    }
 
    @Override
-   public List<Cargo> searchForDescricao(String descricao, Session session) throws HibernateException {
-      Query<Cargo> consulta = session.createQuery("FROM Cargo c WHERE c.descricao LIKE :descricaoSearch ", Cargo.class);
-      consulta.setParameter("descricaoSearch", "%" + descricao + "%");
+   public List<Cargo> searchForCargo(String cargo, Session session) throws HibernateException {
+      Query<Cargo> consulta = session.createQuery("FROM Cargo c WHERE c.cargo LIKE :cargoSearch ", Cargo.class);
+      consulta.setParameter("cargoSearch", "%" + cargo + "%");
 
       return consulta.getResultList();
    }
 
    @Override
    public List<Cargo> fetchLCargos(Session session) throws HibernateException {
-      return  session.createQuery("FROM Cargo c", Cargo.class).getResultList();
+      return session.createQuery("FROM Cargo c", Cargo.class).getResultList();
    }
-   
+
+   @Override
+   public List<Cargo> listFuncionarios(String cargo, Session session) throws HibernateException {
+      Query<Cargo> consulta = session.createQuery("from Cargo c join fetch c.funcionarios f where c.cargo like :searchCargo", Cargo.class);
+      consulta.setParameter("searchCargo", "%" + cargo + "%");
+      return consulta.list();
+   }
+
 }

@@ -1,6 +1,8 @@
 package br.com.senac.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -14,30 +16,32 @@ public class Cargo implements Serializable {
    private Long id;
 
    @Column(nullable = false, length = 50)
-   private String descricao;
+   private String cargo;
+
+   @OneToMany(mappedBy = "cargo")
+   private List<Funcionario> funcionarios;
 
    public Cargo(){}
 
-   public Cargo(String descricao){
-      this.descricao = descricao;
+   public Cargo(String cargo){
+      this.cargo = cargo;
    }
 
    public void setId(Long id) {
       this.id = id;
    }
 
-   public void setDescricao(String descricao) {
-      this.descricao = descricao;
-   }
-
    public Long getId() {
       return id;
    }
 
-   public String getDescricao() {
-      return descricao;
+   public String getCargo() {
+      return cargo;
    }
 
+   public void setCargo(String cargo) {
+      this.cargo = cargo;
+   }
    
    @Override
    public int hashCode() {
