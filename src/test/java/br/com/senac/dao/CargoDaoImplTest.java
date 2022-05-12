@@ -99,7 +99,7 @@ public class CargoDaoImplTest {
       session.close();
 
       if (cargos.isEmpty()) {
-         testSave();
+         testSave(); 
       } else {
          cargo = cargos.get(0);
       }
