@@ -10,4 +10,6 @@ public interface ClienteDao extends BaseDao<Cliente, Long> {
      List<Cliente> searchForName(String name, Session session) throws HibernateException;
      
      List<Cliente> searchForPhone(String phone, Session session) throws HibernateException;
+
+     List<Cliente> searchForNameOrPhone(String search, Session session) throws HibernateException;
 }

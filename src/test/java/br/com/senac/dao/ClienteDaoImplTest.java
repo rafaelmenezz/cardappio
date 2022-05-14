@@ -35,7 +35,7 @@ public class ClienteDaoImplTest {
     public void testUpdate() {
         System.out.println("Teste Update");
 
-        getClienteBD();
+        buscarClienteBD();
 
         cliente.setNome("Alterado: " + GeradorUtil.gerarNome());
         cliente.setTelefone("Alterado: " + GeradorUtil.gerarCelular());
@@ -57,7 +57,7 @@ public class ClienteDaoImplTest {
     public void testSearchName() {
         System.out.println("Teste pesquisa por nome");
 
-        getClienteBD();
+        buscarClienteBD();
 
         session = HibernateUtil.abrirConexao();
         List<Cliente> clientes = clienteDao.searchForName(cliente.getNome(), session);
@@ -70,7 +70,7 @@ public class ClienteDaoImplTest {
     public void testSearchPhone() {
         System.out.println("Teste pesquisa por telefone");
 
-        getClienteBD();
+        buscarClienteBD();
 
         session = HibernateUtil.abrirConexao();
         List<Cliente> clientes = clienteDao.searchForPhone(cliente.getTelefone(), session);
@@ -83,19 +83,32 @@ public class ClienteDaoImplTest {
     public void testDelete(){
         System.out.println("Teste excluir");
         
-        getClienteBD();
+        buscarClienteBD();
         session = HibernateUtil.abrirConexao();
         clienteDao.delete(cliente, session);
 
         Cliente clienteExcluido = clienteDao.searchId(cliente.getId(), session);
 
         assertNull(clienteExcluido);
-        
-        
+    }
+
+    @Test
+    public void testPesquisaPorNomeOuTelefone(){
+        buscarClienteBD();
+
+        session = HibernateUtil.abrirConexao();
+        List<Cliente> pesquisadosNome = clienteDao.searchForNameOrPhone(cliente.getNome(), session);
+        session.close();
+
+        session = HibernateUtil.abrirConexao();
+        List<Cliente> pesquisadosTelefone = clienteDao.searchForNameOrPhone(cliente.getTelefone(), session);
+        session.close();
+
+        assertEquals(pesquisadosNome.get(0).getId(), pesquisadosTelefone.get(0).getId());
     }
 
    
-    public Cliente getClienteBD() {
+    public Cliente buscarClienteBD() {
 
         session = HibernateUtil.abrirConexao();
         Query<Cliente> consulta = session.createQuery("From Cliente c", Cliente.class);

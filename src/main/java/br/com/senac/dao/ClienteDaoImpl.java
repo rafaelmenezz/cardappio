@@ -33,5 +33,13 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long> implements Client
 
     }
 
+    @Override
+    public List<Cliente> searchForNameOrPhone(String search, Session session) throws HibernateException {
+        Query<Cliente> consulta = session.createQuery("FROM Cliente c WHERE c.nome LIKE :search or c.telefone LIKE :search",
+                                                         Cliente.class);
+        consulta.setParameter("search", "%" + search + "%");
+
+        return consulta.getResultList();
+    }
 
 }
