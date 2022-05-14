@@ -43,9 +43,15 @@ public class GeradorUtil {
     }
 
     public static String gerarCargo() {
-        String[] nomes = {"Atendente", "Entregador"};
+        String[] nomes = {"Atendente", "Entregador", "Gerente", "Garçon", "Metri"};
         int indice = (int) (Math.random() * nomes.length);
         return nomes[indice];
+    }
+
+    public static String gerarUf() {
+        String[] uf = {"AM", "AP", "SC", "RS", "PR", "PA", "RJ", "ES", "MG", "BA", "MS", "MT", "TO", "RN", "CE", "PI", "AC", "GO"};
+        int indice = (int) (Math.random() * uf.length);
+        return uf[indice];
     }
     
     private static String gerarSobrenome() {
@@ -65,6 +71,10 @@ public class GeradorUtil {
     public static String gerarLogin(){
         String nome = gerarNome();        
         return nome.toLowerCase() + "@";
+    }
+
+    public static String gerarEmail(){
+        return gerarLogin() + "teste.com";
     }
 
     public static String gerarSenha(int qtde) {

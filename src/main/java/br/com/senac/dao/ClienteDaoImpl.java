@@ -11,7 +11,6 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long> implements Client
 
     @Override
     public Cliente searchId(Long id, Session session) throws HibernateException {
-
         return session.get(Cliente.class, id);
     }
 
@@ -33,5 +32,6 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long> implements Client
         return consulta.getResultList();
 
     }
+
 
 }

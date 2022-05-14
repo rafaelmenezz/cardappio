@@ -1,8 +1,8 @@
 package br.com.senac.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.*;
 
 @Entity
 @Table(name="cliente")
@@ -18,6 +18,7 @@ public class Cliente implements Serializable{
 
    @Column(nullable = false)
    private String telefone;
+
 
    public Cliente(){}
 
@@ -49,6 +50,7 @@ public class Cliente implements Serializable{
    public void setTelefone(String telefone) {
       this.telefone = telefone;
    }
+
 
    @Override
    public int hashCode() {
