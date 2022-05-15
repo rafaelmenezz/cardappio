@@ -23,7 +23,7 @@ public class Funcionario implements Serializable {
    private String telefone;
 
    @Column(nullable = false, unique = true)
-   private String login;
+   private String email;
 
    @Column(nullable = false)
    private String senha;
@@ -35,11 +35,11 @@ public class Funcionario implements Serializable {
    public Funcionario() {
    }
 
-   public Funcionario(String nome, String cpf, String telefone, String login, String senha) {
+   public Funcionario(String nome, String cpf, String telefone, String email, String senha) {
       this.nome = nome;
       this.cpf = cpf;
       this.telefone = telefone;
-      this.login = login;
+      this.email = email;
       this.senha = senha;
    }
 
@@ -67,12 +67,20 @@ public class Funcionario implements Serializable {
       this.cpf = cpf;
    }
 
-   public String getLogin() {
-      return login;
+   public void setEmail(String email) {
+      this.email = email;
    }
 
-   public void setLogin(String login) {
-      this.login = login;
+   public String getEmail() {
+      return email;
+   }
+  
+   public void setTelefone(String telefone) {
+      this.telefone = telefone;
+   }
+
+   public String getTelefone() {
+      return telefone;
    }
 
    public String getSenha() {

@@ -18,10 +18,16 @@ public class FuncionarioDaoImpl extends BaseDaoImpl<Funcionario, Long> implement
 
    @Override
    public List<Funcionario> searchForNameOrPhone(String search, Session session) throws HibernateException {
-      Query<Funcionario> consulta = session.createQuery("FROM Funcionario f WHERE f.nome OR f.telefone LIKE :search ", Funcionario.class);
+      Query<Funcionario> consulta = session.createQuery("FROM Funcionario f WHERE f.nome LIKE :search OR f.telefone LIKE :search", Funcionario.class);
       consulta.setParameter("search", "%" + search + "%");
 
       return consulta.getResultList();
+   }
+
+   @Override
+   public Funcionario login(String email, String senha, Session session) throws HibernateException {
+      Query<Funcionario> consulta = session.createQuery("FROM Funcionario f WHERE f.email = '"+email+"' AND f.senha = '"+senha+"' ", Funcionario.class);
+      return consulta.getSingleResult();
    }
    
 }

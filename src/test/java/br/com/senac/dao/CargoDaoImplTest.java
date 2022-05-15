@@ -101,7 +101,8 @@ public class CargoDaoImplTest {
       if (cargos.isEmpty()) {
          testSave(); 
       } else {
-         cargo = cargos.get(0);
+         int indice = (int) (Math.random() * cargos.size());
+         cargo = cargos.get(indice);
       }
 
       return cargo;
