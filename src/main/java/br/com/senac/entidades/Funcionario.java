@@ -29,7 +29,7 @@ public class Funcionario implements Serializable {
    private String senha;
 
    @JoinColumn(name = "id_cargo")
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.EAGER)
    private Cargo cargo;
 
    public Funcionario() {

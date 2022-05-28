@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 
 import br.com.senac.entidades.Cargo;
 
+
 public class CargoDaoImpl extends BaseDaoImpl<Cargo, Long> implements CargoDao {
 
    @Override
@@ -25,13 +26,13 @@ public class CargoDaoImpl extends BaseDaoImpl<Cargo, Long> implements CargoDao {
 
    @Override
    public List<Cargo> fetchLCargos(Session session) throws HibernateException {
-      return session.createQuery("FROM Cargo c", Cargo.class).getResultList();
+      return session.createQuery("FROM Cargo c join fetch c.funcionarios f", Cargo.class).list();
    }
 
    @Override
-   public List<Cargo> listFuncionarios(String cargo, Session session) throws HibernateException {
+   public List<Cargo> listFuncionarios(Cargo cargo, Session session) throws HibernateException {
       Query<Cargo> consulta = session.createQuery("from Cargo c join fetch c.funcionarios f where c.cargo like :searchCargo", Cargo.class);
-      consulta.setParameter("searchCargo", "%" + cargo + "%");
+      consulta.setParameter("searchCargo", "%" + cargo.getCargo() + "%");
       return consulta.list();
    }
 

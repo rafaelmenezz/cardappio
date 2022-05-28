@@ -18,7 +18,7 @@ public class Cargo implements Serializable {
    @Column(nullable = false, length = 50)
    private String cargo;
 
-   @OneToMany(mappedBy = "cargo")
+   @OneToMany(mappedBy = "cargo", fetch = FetchType.EAGER)
    private List<Funcionario> funcionarios;
 
    public Cargo(){}
@@ -41,6 +41,14 @@ public class Cargo implements Serializable {
 
    public void setCargo(String cargo) {
       this.cargo = cargo;
+   }
+
+   public void setFuncionarios(List<Funcionario> funcionarios) {
+      this.funcionarios = funcionarios;
+   }
+
+   public List<Funcionario> getFuncionarios() {
+      return funcionarios;
    }
    
    @Override

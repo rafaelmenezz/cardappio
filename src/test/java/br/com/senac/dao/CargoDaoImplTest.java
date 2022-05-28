@@ -3,6 +3,7 @@ package br.com.senac.dao;
 import org.junit.Test;
 
 import br.com.senac.entidades.Cargo;
+import br.com.senac.entidades.Funcionario;
 import br.com.senac.util.GeradorUtil;
 
 import static org.junit.Assert.*;
@@ -87,7 +88,23 @@ public class CargoDaoImplTest {
       List<Cargo> cargos = cargoDao.fetchLCargos(session);
       session.close();
 
+      mostrar(cargos);
+
       assertTrue(!cargos.isEmpty());
+   }
+
+   @Test
+   public void testListarFuncionarios(){
+      
+      busCargoBd();
+
+      session = HibernateUtil.abrirConexao();
+
+      List<Cargo> cargos = cargoDao.listFuncionarios(cargo, session);
+      session.close();
+
+      assertTrue(!cargos.isEmpty());
+      
    }
 
    public Cargo busCargoBd(){
@@ -108,5 +125,25 @@ public class CargoDaoImplTest {
       return cargo;
    }
 
+   private void mostrar(List<Cargo> cargos){
+      System.out.println("Tamanho dos cargos " + cargos.size());
+      System.out.println("");
+      for (Cargo car : cargos) {
+          System.out.println("Id Cargo " + car.getId());
+          System.out.println("Cargo " + car.getCargo());
+          System.out.println("Funcionarios");
+          System.out.println("");
+          if(car.getFuncionarios() != null){
+            for (Funcionario funcionario : car.getFuncionarios()) {
+               System.out.println("Nome " + funcionario.getNome());
+               System.out.println("Email " + funcionario.getEmail());
+               System.out.println("Telefone " + funcionario.getTelefone());
+               System.out.println("");
+           }
+          }
+        
+          System.out.println("");
+     }    
+ } 
    
 }
